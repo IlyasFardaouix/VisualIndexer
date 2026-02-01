@@ -1,0 +1,34 @@
+# Environment
+venv/
+env/
+*.pyc
+__pycache__/
+*.egg-info/
+dist/
+build/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Project specific
+models/cache/*
+!models/cache/.gitkeep
+data/images/raw/*
+!data/images/raw/.gitkeep
+data/images/processed/*
+!data/images/processed/.gitkeep
+data/*.csv
+data/*.json
+logs/
+
+# Local env
+.env.local
+.env
