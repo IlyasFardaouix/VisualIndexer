@@ -1,13 +1,18 @@
-# 🖼️ Photothèque Intelligente
+# 🖼️ VisualIndexer
+
+**AI-Powered Image Management & Semantic Search with PyTorch, CLIP, Transformers & Streamlit**
 
 ![Python](https://img.shields.io/badge/Python-3.10%2B-blue)
 ![PyTorch](https://img.shields.io/badge/PyTorch-2.1.1-red)
+![CLIP](https://img.shields.io/badge/CLIP-Vision--Language-orange)
+![Transformers](https://img.shields.io/badge/Transformers-4.35.2-purple)
 ![Streamlit](https://img.shields.io/badge/Streamlit-1.29.0-green)
+![TensorFlow](https://img.shields.io/badge/OCR-Tesseract-lightgrey)
 ![License](https://img.shields.io/badge/License-MIT-yellow)
 
 ## 📋 Description du Projet
 
-**Photothèque Intelligente** est un système complet de gestion, indexation et recherche d'images basé sur l'**Intelligence Artificielle** et l'**Apprentissage Automatique**. 
+**VisualIndexer** est un système complet et intelligent de gestion, indexation automatique et recherche sémantique d'images. Propulsé par l'**Intelligence Artificielle** et les modèles **Deep Learning** dernière génération (PyTorch, CLIP, Transformers). 
 
 Ce projet permet de:
 - 📥 Ingérer et optimiser des images en masse
@@ -64,7 +69,7 @@ Ce projet permet de:
 
 ## 🛠️ Technologies Utilisées
 
-### **Langage & Runtime**
+**VisualIndexer** utilise un stack technologique moderne et performant:
 - **Python** 3.10+ - Langage principal
 - **Pip** - Gestionnaire de dépendances
 
@@ -109,7 +114,7 @@ Ce projet permet de:
 
 ---
 
-## 📁 Structure du Projet
+##  Structure du Projet
 
 ```
 phototheque_intelligente/
@@ -161,8 +166,8 @@ phototheque_intelligente/
 
 ```bash
 # 1. Cloner le repo
-git clone https://github.com/IlyasFardaouix/Phototheque-Intelligente.git
-cd Phototheque-Intelligente
+git clone https://github.com/IlyasFardaouix/VisualIndexer.git
+cd VisualIndexer
 
 # 2. Créer environnement virtuel
 python -m venv venv
@@ -188,7 +193,7 @@ python main.py --mode ui
 
 ---
 
-## 📊 Pipeline 5 Étapes
+##  Pipeline 5 Étapes
 
 ```
 Images Brutes
