@@ -10,68 +10,68 @@
 ![TensorFlow](https://img.shields.io/badge/OCR-Tesseract-lightgrey)
 ![License](https://img.shields.io/badge/License-MIT-yellow)
 
-## 📋 Description du Projet
+## 📋 Project Description
 
-**VisualIndexer** est un système complet et intelligent de gestion, indexation automatique et recherche sémantique d'images. Propulsé par l'**Intelligence Artificielle** et les modèles **Deep Learning** dernière génération (PyTorch, CLIP, Transformers). 
+**VisualIndexer** is a complete and intelligent system for image management, automatic indexing, and semantic search. Powered by **Artificial Intelligence** and state-of-the-art **Deep Learning** models (PyTorch, CLIP, Transformers).
 
-Ce projet permet de:
-- 📥 Ingérer et optimiser des images en masse
-- 🔍 Extraire automatiquement des métadonnées EXIF
-- 📄 Reconnaître du texte dans les images (OCR)
-- 🏷️ Générer automatiquement des tags visuels intelligents
-- 🧠 Créer des représentations vectorielles sémantiques
-- ⚡ Rechercher des images par similarité
-- 🎨 Explorer les résultats via une interface web interactive
+This project enables:
+- 📥 Batch ingest and optimize images
+- 🔍 Automatically extract EXIF metadata
+- 📄 Recognize text in images (OCR)
+- 🏷️ Automatically generate intelligent visual tags
+- 🧠 Create semantic vector representations
+- ⚡ Search images by similarity
+- 🎨 Explore results via an interactive web interface
 
 ---
 
-## 🚀 Fonctionnalités Principales
+## 🚀 Key Features
 
-### 1️⃣ **Ingestion d'Images**
-- Upload/ingestion en masse de fichiers images
-- Détection automatique des doublons (hash MD5)
-- Optimisation et redimensionnement intelligent (max 1920x1080)
-- Compression JPEG adaptée (qualité 85%)
+### 1️⃣ **Image Ingestion**
+- Batch upload and ingest image files
+- Automatic duplicate detection (MD5 hash)
+- Intelligent optimization and resizing (max 1920x1080)
+- Adaptive JPEG compression (quality 85%)
 
-### 2️⃣ **Extraction de Métadonnées**
-- Extraction EXIF complète (date prise, appareil photo, GPS, etc.)
-- Dimensions et format d'image
-- Génération automatique de CSV pour analyse
+### 2️⃣ **Metadata Extraction**
+- Complete EXIF extraction (capture date, camera, GPS, etc.)
+- Image dimensions and format
+- Automatic CSV generation for analysis
 
-### 3️⃣ **Reconnaissance de Texte (OCR)**
-- OCR Tesseract multi-langue (Français + Anglais)
-- Extraction du texte présent dans les images
-- Cache JSON pour optimisation
+### 3️⃣ **Text Recognition (OCR)**
+- Multi-language Tesseract OCR (English + French)
+- Extract text present in images
+- JSON caching for optimization
 
-### 4️⃣ **Tagging Automatique**
+### 4️⃣ **Automatic Tagging**
 - Vision Transformer CLIP (OpenAI)
-- Génération de tags visuels intelligents
-- 50+ catégories prédéfinies (ville, portrait, nourriture, document, etc.)
+- Intelligent visual tag generation
+- 50+ predefined categories (city, portrait, food, document, etc.)
 
-### 5️⃣ **Embeddings Sémantiques**
-- Génération de vecteurs 384D avec Sentence-Transformers
-- Représentation sémantique du contenu
-- Recherche par similarité avancée
+### 5️⃣ **Semantic Embeddings**
+- 384D vector generation with Sentence-Transformers
+- Semantic content representation
+- Advanced similarity search
 
-### 6️⃣ **Moteur de Recherche Avancée**
-- Recherche par texte avec embeddings
-- Filtrage par métadonnées (date, taille, format)
-- Recherche par tags combinée
-- Fusion intelligente des résultats
+### 6️⃣ **Advanced Search Engine**
+- Text search with embeddings
+- Metadata filtering (date, size, format)
+- Combined tag search
+- Intelligent result fusion
 
-### 7️⃣ **Interface Web Interactive**
-- Dashboard Streamlit moderne
-- Visualisation des images
-- Recherche multi-critères
-- Export des résultats
+### 7️⃣ **Interactive Web Interface**
+- Modern Streamlit dashboard
+- Image visualization
+- Multi-criteria search
+- Result export
 
 ---
 
-## 🛠️ Technologies Utilisées
+## 🛠️ Technologies Used
 
-**VisualIndexer** utilise un stack technologique moderne et performant:
-- **Python** 3.10+ - Langage principal
-- **Pip** - Gestionnaire de dépendances
+**VisualIndexer** uses a modern and performant technology stack:
+- **Python** 3.10+ - Primary language
+- **Pip** - Package manager
 
 ### **Deep Learning & Vision**
 | Technologie | Version | Usage |
@@ -82,18 +82,18 @@ Ce projet permet de:
 | **Sentence-Transformers** | 2.2.2 | Embeddings sémantiques |
 | **CLIP** | 0.1.0.post1 | Vision-Language model |
 
-### **Traitement d'Images**
-| Technologie | Version | Usage |
+### **Image Processing**
+| Technology | Version | Usage |
 |-------------|---------|-------|
-| **Pillow** | 10.1.0 | Manipulation d'images |
-| **OpenCV** | 4.8.1 | Algorithmique vision |
+| **Pillow** | 10.1.0 | Image manipulation |
+| **OpenCV** | 4.8.1 | Vision algorithms |
 | **Pytesseract** | 0.3.10 | OCR wrapper |
 
 ### **Data Science & Analytics**
-| Technologie | Version | Usage |
+| Technology | Version | Usage |
 |-------------|---------|-------|
-| **NumPy** | 1.26.2 | Calcul numérique |
-| **Pandas** | 2.1.3 | Frames & données |
+| **NumPy** | 1.26.2 | Numerical computing |
+| **Pandas** | 2.1.3 | Dataframes & data processing |
 | **Scikit-learn** | 1.3.2 | ML utilities |
 
 ### **Web & UI**
@@ -102,55 +102,55 @@ Ce projet permet de:
 | **Streamlit** | 1.29.0 | Interface web interactive |
 
 ### **Database & Utils**
-| Technologie | Version | Usage |
+| Technology | Version | Usage |
 |-------------|---------|-------|
-| **PostgreSQL** | - | (Optionnel) Base de données |
-| **Python-dotenv** | 1.0.0 | Variables d'environnement |
+| **PostgreSQL** | - | (Optional) Database |
+| **Python-dotenv** | 1.0.0 | Environment variables |
 | **TQDM** | 4.66.1 | Progress bars |
 | **Requests** | 2.31.0 | HTTP client |
 
-### **Infrastructure Externe**
-- **Tesseract OCR** - Reconnaissance optique de caractères (Windows/Linux/Mac)
+### **External Infrastructure**
+- **Tesseract OCR** - Optical character recognition (Windows/Linux/Mac)
 
 ---
 
-##  Structure du Projet
+## 📁 Project Structure
 
 ```
-phototheque_intelligente/
-├── main.py                 # Point d'entrée principal
-├── requirements.txt        # Dépendances Python
+VisualIndexer/
+├── main.py                 # Main entry point
+├── requirements.txt        # Python dependencies
 ├── .env                    # Configuration (Tesseract path)
-├── .gitignore             # Exclusions Git
+├── .gitignore              # Git exclusions
 │
 ├── config/
-│   └── settings.py        # Configuration centralisée
+│   └── settings.py         # Centralized configuration
 │
-├── scripts/               # Modules métier
-│   ├── ingest.py         # Ingestion & doublons
-│   ├── extract_metadata.py # Extraction EXIF
-│   ├── ocr.py            # OCR Tesseract
-│   ├── tag_clip.py       # Tagging CLIP
-│   ├── embeddings.py     # Vecteurs sémantiques
-│   └── search.py         # Moteur de recherche
+├── scripts/                # Business logic modules
+│   ├── ingest.py           # Ingestion & duplicates
+│   ├── extract_metadata.py # EXIF extraction
+│   ├── ocr.py              # Tesseract OCR
+│   ├── tag_clip.py         # CLIP tagging
+│   ├── embeddings.py       # Semantic vectors
+│   └── search.py           # Search engine
 │
 ├── ui/
-│   └── interface.py      # Interface Streamlit
+│   └── interface.py        # Streamlit interface
 │
 ├── data/
 │   ├── images/
-│   │   ├── raw/          # Images d'entrée
-│   │   └── processed/    # Images optimisées
-│   ├── metadata.csv      # Métadonnées
-│   ├── embeddings.json   # Cache embeddings
-│   └── ocr_results.json  # Cache OCR
+│   │   ├── raw/            # Input images
+│   │   └── processed/      # Optimized images
+│   ├── metadata.csv        # Metadata
+│   ├── embeddings.json     # Embeddings cache
+│   └── ocr_results.json    # OCR cache
 │
 ├── models/
-│   └── cache/            # Cache modèles ML
+│   └── cache/              # ML models cache
 │
-├── README.md             # Documentation
-├── GUIDE_UTILISATION.md  # Guide complet
-└── COMMITS_GUIDE.md      # Guide des commits
+├── README.md               # Documentation
+├── GUIDE_UTILISATION.md    # Usage guide
+└── COMMITS_GUIDE.md        # Commits guide
 ```
 
 ---
@@ -224,52 +224,52 @@ Résultats Indexés & Recherchables
 
 ---
 
-## 📝 Utilisation
+## 📝 Usage
 
-### Mode Pipeline Complet
+### Full Pipeline Mode
 ```bash
 python main.py --mode pipeline
 ```
-Traite toutes les images du dossier `data/images/raw/`
+Processes all images in the `data/images/raw/` folder
 
-### Mode Interface Web
+### Web Interface Mode
 ```bash
 python main.py --mode ui
 ```
-Lance le dashboard Streamlit sur http://localhost:8501
+Launches the Streamlit dashboard on http://localhost:8501
 
-### Mode Ingestion Seule
+### Ingestion Only Mode
 ```bash
 python main.py --mode ingest
 ```
-Ingère uniquement les images sans les modules IA
+Ingests images only without AI modules
 
 ---
 
-## 📚 Documentation Additionnelle
+## 📚 Additional Documentation
 
-- [GUIDE_UTILISATION.md](GUIDE_UTILISATION.md) - Guide complet d'utilisation
-- [COMMITS_GUIDE.md](COMMITS_GUIDE.md) - Documentation des commits GitHub
-- [requirements.txt](requirements.txt) - Liste complète des dépendances
+- [GUIDE_UTILISATION.md](GUIDE_UTILISATION.md) - Complete usage guide
+- [COMMITS_GUIDE.md](COMMITS_GUIDE.md) - GitHub commits documentation
+- [requirements.txt](requirements.txt) - Complete dependencies list
 
 ---
 
-## 💡 Optimisations & Performance
+## 💡 Optimizations & Performance
 
-- ✅ Cache intelligent des modèles ML
-- ✅ Vecteurs embeddings réutilisés
-- ✅ Compression JPEG optimisée
+- ✅ Intelligent ML model caching
+- ✅ Reused embedding vectors
+- ✅ Optimized JPEG compression
 - ✅ Batch processing
-- ✅ Progress tracking avec TQDM
+- ✅ Progress tracking with TQDM
 
 ---
 
-## 🔒 Configuration Sécurité
+## 🔒 Security Configuration
 
-Les variables sensibles sont stockées dans `.env`:
+Sensitive variables are stored in `.env`:
 ```bash
 TESSERACT_PATH=C:\Program Files\Tesseract-OCR\tesseract.exe
-OCR_LANGUAGE=fra+eng
+OCR_LANGUAGE=eng+fra
 DB_HOST=localhost
 DB_PORT=5432
 ```
@@ -278,11 +278,11 @@ DB_PORT=5432
 
 ## 📄 License
 
-MIT License - Libre d'utilisation
+MIT License - Free to use
 
 ---
 
-## 👤 Auteur
+## 👤 Author
 
 **Ilyas Fardaouix**  
 GitHub: [@IlyasFardaouix](https://github.com/IlyasFardaouix)
@@ -291,8 +291,8 @@ GitHub: [@IlyasFardaouix](https://github.com/IlyasFardaouix)
 
 ## 🤝 Support & Contributions
 
-Des questions ou améliorations? Ouvrez une [Issue](https://github.com/IlyasFardaouix/Phototheque-Intelligente/issues) ou un [Pull Request](https://github.com/IlyasFardaouix/Phototheque-Intelligente/pulls)
+Have questions or improvements? Open an [Issue](https://github.com/IlyasFardaouix/VisualIndexer/issues) or submit a [Pull Request](https://github.com/IlyasFardaouix/VisualIndexer/pulls)
 
 ---
 
-**⭐ Si ce projet vous plaît, n'hésitez pas à le mettre en favori!**
+**⭐ If you like this project, don't forget to star it!**
