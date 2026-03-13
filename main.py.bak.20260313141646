@@ -1,4 +1,3 @@
-```python
 """
 Photothèque Intelligente - Pipeline principal
 Traitement complet des images: ingestion, OCR, tags, embeddings
@@ -8,37 +7,21 @@ import os
 import sys
 import argparse
 from datetime import datetime
-import traceback
-import subprocess
 
-from scripts.ingest import ImageIngestor
-from scripts.extract_metadata import MetadataExtractor
-from scripts.tag_clip import ClipTagger
-from scripts.ocr import OcrProcessor
-from scripts.embeddings import EmbeddingManager
+from scripts.ingest import image_ingestor
+from scripts.extract_metadata import metadata_extractor
+from scripts.tag_clip import clip_tagger
+from scripts.ocr import ocr_processor
+from scripts.embeddings import embedding_manager
 from config.settings import IMAGE_DIR, PROCESSED_IMAGE_DIR, EMBEDDING_PATH
 
 def print_banner():
-    """Affiche le logo de l'application."""
     print("\n=== PHOTOTHÈQUE INTELLIGENTE ===\n")
 
 def print_section(title):
-    """Affiche un titre de section."""
     print(f"\n--- {title} ---\n")
 
 def run_pipeline():
-    """
-    Exécute la pipeline de traitement des images.
-
-    La pipeline comprend les étapes suivantes :
-    1. Ingestion des images
-    2. Extraction des métadonnées
-    3. Reconnaissance optique de caractères (OCR)
-    4. Tagging automatique
-    5. Génération des vecteurs (embeddings)
-
-    :return: True si la pipeline est terminée avec succès, False sinon
-    """
     print_banner()
     
     if not os.path.exists(IMAGE_DIR) or not os.listdir(IMAGE_DIR):
@@ -48,15 +31,15 @@ def run_pipeline():
     try:
         # ÉTAPE 1: Ingestion
         print_section("📥 ÉTAPE 1: Ingestion des images")
-        ImageIngestor.ingest_images(IMAGE_DIR)
-        stats = ImageIngestor.get_statistics()
+        image_ingestor.ingest_images(IMAGE_DIR)
+        stats = image_ingestor.get_statistics()
         print(f"\n✅ Ingestion terminée:")
         print(f"   • Images traitées: {stats['total_processed']}")
         print(f"   • Doublons trouvés: {stats['duplicates_found']}")
         
         # ÉTAPE 2: Métadonnées
         print_section("🔍 ÉTAPE 2: Extraction des métadonnées")
-        MetadataExtractor.save_metadata(PROCESSED_IMAGE_DIR)
+        metadata_extractor.save_metadata(PROCESSED_IMAGE_DIR)
         
         # ÉTAPE 3: OCR
         print_section("📄 ÉTAPE 3: Reconnaissance Optique de Caractères (OCR)")
@@ -83,16 +66,16 @@ def run_pipeline():
             
             try:
                 # OCR
-                text = OcrProcessor.run_ocr(image_path)
+                text = ocr_processor.run_ocr(image_path)
                 
                 # Tags CLIP
-                tags = ClipTagger.get_clip_tags(image_path, top_k=5)
+                tags = clip_tagger.get_clip_tags(image_path, top_k=5)
                 
                 # Combinaison texte + tags
                 caption = f"{text} {' '.join(tags)}"
                 
                 # Embedding
-                embedding = EmbeddingManager.generate_embedding(caption)
+                embedding = embedding_manager.generate_embedding(caption)
                 if embedding:
                     embeddings_dict[filename] = embedding
                     print(f"      ✅ Traité avec succès")
@@ -103,8 +86,8 @@ def run_pipeline():
                 print(f"      ❌ Erreur: {str(e)[:50]}")
         
         # Sauvegarder les embeddings
-        EmbeddingManager.store_embeddings(embeddings_dict)
-        OcrProcessor.save_ocr_results()
+        embedding_manager.store_embeddings(embeddings_dict)
+        ocr_processor.save_ocr_results()
         
         # RÉSUMÉ FINAL
         print_section("✅ RÉSUMÉ FINAL")
@@ -112,7 +95,7 @@ def run_pipeline():
         print(f"\n📊 Statistiques:")
         print(f"   • Images ingérées: {len(images_to_process)}")
         print(f"   • Embeddings générés: {len(embeddings_dict)}")
-        print(f"   • OCR résultats: {len(OcrProcessor.ocr_cache)}")
+        print(f"   • OCR résultats: {len(ocr_processor.ocr_cache)}")
         print(f"\n💾 Fichiers de sortie:")
         print(f"   • Métadonnées: data/metadata.csv")
         print(f"   • Embeddings: data/embeddings.json")
@@ -125,19 +108,16 @@ def run_pipeline():
         
     except Exception as e:
         print(f"\n❌ Erreur fatale: {e}")
+        import traceback
         traceback.print_exc()
         return False
 
 def run_ui():
-    """
-    Démarrage de l'interface.
-
-    Lance l'interface Streamlit si elle est installée, sinon affiche un message d'erreur.
-    """
     print_banner()
     print("Démarrage de l'interface...\n")
     
     try:
+        import subprocess
         subprocess.run([
             sys.executable, '-m', 'streamlit', 'run',
             'ui/interface.py',
@@ -149,21 +129,11 @@ def run_ui():
         print(f"Erreur: {e}")
 
 def run_ingest_only():
-    """
-    Ingestion des images uniquement.
-
-    Exécute la fonction d'ingestion des images sans passer par la pipeline complète.
-    """
     print_banner()
     print_section("INGESTION UNIQUEMENT")
-    ImageIngestor.ingest_images(IMAGE_DIR)
+    image_ingestor.ingest_images(IMAGE_DIR)
 
 def main():
-    """
-    Programme principal.
-
-    Gère les arguments de ligne de commande et lance la pipeline ou l'interface en conséquence.
-    """
     parser = argparse.ArgumentParser(description="Photothèque Intelligente")
     parser.add_argument('--mode', choices=['pipeline', 'ui', 'ingest'], default='pipeline',
                         help='Mode d\'exécution')
@@ -179,4 +149,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-```
