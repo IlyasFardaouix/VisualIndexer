@@ -1,102 +1,80 @@
 # 🖼️ VisualIndexer
-================
 
 **AI-Powered Image Management & Semantic Search with PyTorch, CLIP, Transformers & Streamlit**
-=====================================================================================
 
-### Table of Contents
------------------
+![Python](https://img.shields.io/badge/Python-3.10%2B-blue)
+![PyTorch](https://img.shields.io/badge/PyTorch-2.1.1-red)
+![CLIP](https://img.shields.io/badge/CLIP-Vision--Language-orange)
+![Transformers](https://img.shields.io/badge/Transformers-4.35.2-purple)
+![Streamlit](https://img.shields.io/badge/Streamlit-1.29.0-green)
+![TensorFlow](https://img.shields.io/badge/OCR-Tesseract-lightgrey)
+![License](https://img.shields.io/badge/License-MIT-yellow)
 
-* [Project Description](#project-description)
-* [Key Features](#key-features)
-* [Technologies Used](#technologies-used)
-* [Project Structure](#project-structure)
-* [Installation & Configuration](#installation--configuration)
-* [Pipeline 5 Étapes](#pipeline-5-étapes)
-* [Cas d'Usage](#cas-dusage)
-* [Usage](#usage)
-* [Additional Documentation](#additional-documentation)
-* [Optimizations & Performance](#optimizations--performance)
-* [Security Configuration](#security-configuration)
-* [License](#license)
-* [Author](#author)
-* [Support & Contributions](#support--contributions)
-
-### Project Description
---------------------
+## 📋 Project Description
 
 **VisualIndexer** is a complete and intelligent system for image management, automatic indexing, and semantic search. Powered by **Artificial Intelligence** and state-of-the-art **Deep Learning** models (PyTorch, CLIP, Transformers).
 
 This project enables:
+- 📥 Batch ingest and optimize images
+- 🔍 Automatically extract EXIF metadata
+- 📄 Recognize text in images (OCR)
+- 🏷️ Automatically generate intelligent visual tags
+- 🧠 Create semantic vector representations
+- ⚡ Search images by similarity
+- 🎨 Explore results via an interactive web interface
 
-* Batch ingest and optimize images
-* Automatically extract EXIF metadata
-* Recognize text in images (OCR)
-* Automatically generate intelligent visual tags
-* Create semantic vector representations
-* Search images by similarity
-* Explore results via an interactive web interface
+---
 
-### Key Features
---------------
+## 🚀 Key Features
 
-#### 1. Image Ingestion
+### 1️⃣ **Image Ingestion**
+- Batch upload and ingest image files
+- Automatic duplicate detection (MD5 hash)
+- Intelligent optimization and resizing (max 1920x1080)
+- Adaptive JPEG compression (quality 85%)
 
-* Batch upload and ingest image files
-* Automatic duplicate detection (MD5 hash)
-* Intelligent optimization and resizing (max 1920x1080)
-* Adaptive JPEG compression (quality 85%)
+### 2️⃣ **Metadata Extraction**
+- Complete EXIF extraction (capture date, camera, GPS, etc.)
+- Image dimensions and format
+- Automatic CSV generation for analysis
 
-#### 2. Metadata Extraction
+### 3️⃣ **Text Recognition (OCR)**
+- Multi-language Tesseract OCR (English + French)
+- Extract text present in images
+- JSON caching for optimization
 
-* Complete EXIF extraction (capture date, camera, GPS, etc.)
-* Image dimensions and format
-* Automatic CSV generation for analysis
+### 4️⃣ **Automatic Tagging**
+- Vision Transformer CLIP (OpenAI)
+- Intelligent visual tag generation
+- 50+ predefined categories (city, portrait, food, document, etc.)
 
-#### 3. Text Recognition (OCR)
+### 5️⃣ **Semantic Embeddings**
+- 384D vector generation with Sentence-Transformers
+- Semantic content representation
+- Advanced similarity search
 
-* Multi-language Tesseract OCR (English + French)
-* Extract text present in images
-* JSON caching for optimization
+### 6️⃣ **Advanced Search Engine**
+- Text search with embeddings
+- Metadata filtering (date, size, format)
+- Combined tag search
+- Intelligent result fusion
 
-#### 4. Automatic Tagging
+### 7️⃣ **Interactive Web Interface**
+- Modern Streamlit dashboard
+- Image visualization
+- Multi-criteria search
+- Result export
 
-* Vision Transformer CLIP (OpenAI)
-* Intelligent visual tag generation
-* 50+ predefined categories (city, portrait, food, document, etc.)
+---
 
-#### 5. Semantic Embeddings
-
-* 384D vector generation with Sentence-Transformers
-* Semantic content representation
-* Advanced similarity search
-
-#### 6. Advanced Search Engine
-
-* Text search with embeddings
-* Metadata filtering (date, size, format)
-* Combined tag search
-* Intelligent result fusion
-
-#### 7. Interactive Web Interface
-
-* Modern Streamlit dashboard
-* Image visualization
-* Multi-criteria search
-* Result export
-
-### Technologies Used
--------------------
+## 🛠️ Technologies Used
 
 **VisualIndexer** uses a modern and performant technology stack:
+- **Python** 3.10+ - Primary language
+- **Pip** - Package manager
 
-* **Python** 3.10+ - Primary language
-* **Pip** - Package manager
-
-### Deep Learning & Vision
--------------------------
-
-| Technology | Version | Usage |
+### **Deep Learning & Vision**
+| Technologie | Version | Usage |
 |-------------|---------|-------|
 | **PyTorch** | 2.1.1 | Framework deep learning |
 | **TorchVision** | 0.16.1 | Vision utilities |
@@ -104,34 +82,26 @@ This project enables:
 | **Sentence-Transformers** | 2.2.2 | Embeddings sémantiques |
 | **CLIP** | 0.1.0.post1 | Vision-Language model |
 
-### Image Processing
--------------------
-
+### **Image Processing**
 | Technology | Version | Usage |
 |-------------|---------|-------|
 | **Pillow** | 10.1.0 | Image manipulation |
 | **OpenCV** | 4.8.1 | Vision algorithms |
 | **Pytesseract** | 0.3.10 | OCR wrapper |
 
-### Data Science & Analytics
----------------------------
-
+### **Data Science & Analytics**
 | Technology | Version | Usage |
 |-------------|---------|-------|
 | **NumPy** | 1.26.2 | Numerical computing |
 | **Pandas** | 2.1.3 | Dataframes & data processing |
 | **Scikit-learn** | 1.3.2 | ML utilities |
 
-### Web & UI
-------------
-
+### **Web & UI**
 | Technologie | Version | Usage |
 |-------------|---------|-------|
 | **Streamlit** | 1.29.0 | Interface web interactive |
 
-### Database & Utils
--------------------
-
+### **Database & Utils**
 | Technology | Version | Usage |
 |-------------|---------|-------|
 | **PostgreSQL** | - | (Optional) Database |
@@ -139,8 +109,12 @@ This project enables:
 | **TQDM** | 4.66.1 | Progress bars |
 | **Requests** | 2.31.0 | HTTP client |
 
-### Project Structure
----------------------
+### **External Infrastructure**
+- **Tesseract OCR** - Optical character recognition (Windows/Linux/Mac)
+
+---
+
+## 📁 Project Structure
 
 ```
 VisualIndexer/
@@ -179,8 +153,9 @@ VisualIndexer/
 └── COMMITS_GUIDE.md        # Commits guide
 ```
 
-### Installation & Configuration
--------------------------------
+---
+
+## ⚙️ Installation & Configuration
 
 ### Prérequis
 - Python 3.10 ou supérieur
@@ -216,8 +191,9 @@ python main.py --mode ui
 # Accès: http://localhost:8501
 ```
 
-### Pipeline 5 Étapes
----------------------
+---
+
+##  Pipeline 5 Étapes
 
 ```
 Images Brutes
@@ -235,8 +211,9 @@ Images Brutes
 Résultats Indexés & Recherchables
 ```
 
-### Cas d'Usage
---------------
+---
+
+## 🎯 Cas d'Usage
 
 ✅ **Archivage Intelligent** - Gestion massive d'images professionnelles  
 ✅ **Recherche Sémantique** - Trouver images par similarité visuelle  
@@ -245,8 +222,9 @@ Résultats Indexés & Recherchables
 ✅ **Documentation** - Extraire texte depuis documents scannés  
 ✅ **E-Commerce** - Cataloguer produits en images  
 
-### Usage
------
+---
+
+## 📝 Usage
 
 ### Full Pipeline Mode
 ```bash
@@ -266,24 +244,27 @@ python main.py --mode ingest
 ```
 Ingests images only without AI modules
 
-### Additional Documentation
----------------------------
+---
 
-* [GUIDE_UTILISATION.md](GUIDE_UTILISATION.md) - Complete usage guide
-* [COMMITS_GUIDE.md](COMMITS_GUIDE.md) - GitHub commits documentation
-* [requirements.txt](requirements.txt) - Complete dependencies list
+## 📚 Additional Documentation
 
-### Optimizations & Performance
-------------------------------
+- [GUIDE_UTILISATION.md](GUIDE_UTILISATION.md) - Complete usage guide
+- [COMMITS_GUIDE.md](COMMITS_GUIDE.md) - GitHub commits documentation
+- [requirements.txt](requirements.txt) - Complete dependencies list
 
-* ✅ Intelligent ML model caching
-* ✅ Reused embedding vectors
-* ✅ Optimized JPEG compression
-* ✅ Batch processing
-* ✅ Progress tracking with TQDM
+---
 
-### Security Configuration
--------------------------
+## 💡 Optimizations & Performance
+
+- ✅ Intelligent ML model caching
+- ✅ Reused embedding vectors
+- ✅ Optimized JPEG compression
+- ✅ Batch processing
+- ✅ Progress tracking with TQDM
+
+---
+
+## 🔒 Security Configuration
 
 Sensitive variables are stored in `.env`:
 ```bash
@@ -293,13 +274,25 @@ DB_HOST=localhost
 DB_PORT=5432
 ```
 
-### License
---------
+---
+
+## 📄 License
 
 MIT License - Free to use
 
-### Author
---------
+---
+
+## 👤 Author
 
 **Ilyas Fardaouix**  
-GitHub: [@Ily
+GitHub: [@IlyasFardaouix](https://github.com/IlyasFardaouix)
+
+---
+
+## 🤝 Support & Contributions
+
+Have questions or improvements? Open an [Issue](https://github.com/IlyasFardaouix/VisualIndexer/issues) or submit a [Pull Request](https://github.com/IlyasFardaouix/VisualIndexer/pulls)
+
+---
+
+**⭐ If you like this project, don't forget to star it!**
