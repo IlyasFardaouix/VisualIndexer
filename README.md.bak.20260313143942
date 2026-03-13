@@ -30,45 +30,45 @@
 ### Key Features
 --------------
 
-#### Image Ingestion
+#### 1. Image Ingestion
 
 * Batch upload and ingest image files
 * Automatic duplicate detection (MD5 hash)
 * Intelligent optimization and resizing (max 1920x1080)
 * Adaptive JPEG compression (quality 85%)
 
-#### Metadata Extraction
+#### 2. Metadata Extraction
 
 * Complete EXIF extraction (capture date, camera, GPS, etc.)
 * Image dimensions and format
 * Automatic CSV generation for analysis
 
-#### Text Recognition (OCR)
+#### 3. Text Recognition (OCR)
 
 * Multi-language Tesseract OCR (English + French)
 * Extract text present in images
 * JSON caching for optimization
 
-#### Automatic Tagging
+#### 4. Automatic Tagging
 
 * Vision Transformer CLIP (OpenAI)
 * Intelligent visual tag generation
 * 50+ predefined categories (city, portrait, food, document, etc.)
 
-#### Semantic Embeddings
+#### 5. Semantic Embeddings
 
 * 384D vector generation with Sentence-Transformers
 * Semantic content representation
 * Advanced similarity search
 
-#### Advanced Search Engine
+#### 6. Advanced Search Engine
 
 * Text search with embeddings
 * Metadata filtering (date, size, format)
 * Combined tag search
 * Intelligent result fusion
 
-#### Interactive Web Interface
+#### 7. Interactive Web Interface
 
 * Modern Streamlit dashboard
 * Image visualization
