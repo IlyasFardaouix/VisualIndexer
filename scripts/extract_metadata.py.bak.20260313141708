@@ -1,4 +1,3 @@
-```python
 import os
 import csv
 from PIL import Image
@@ -7,65 +6,47 @@ from datetime import datetime
 from config.settings import IMAGE_DIR, PROCESSED_IMAGE_DIR, METADATA_PATH
 
 class MetadataExtractor:
-    """
-    A class used to extract metadata from images.
     
-    Attributes:
-    ----------
-    metadata : list
-        A list to store extracted metadata.
-    """
-
     def __init__(self):
-        """Initialize the metadata extractor."""
+        """Initialise l'extracteur."""
         self.metadata = []
-
-    def extract_exif_data(self, image_path: str) -> dict:
+    
+    def extract_exif_data(self, image_path):
         """
-        Extract EXIF data from an image.
-
-        Args:
-            image_path (str): Path to the image.
-
-        Returns:
-            dict: A dictionary of EXIF data.
-        """
-        # Initialize an empty dictionary to store EXIF data
-        exif_data = {}
+        Extrait les données EXIF d'une image.
         
-        try:
-            # Open the image using PIL
-            image = Image.open(image_path)
-            # Get the EXIF data from the image
-            exif_data = image.getexif()
+        Args:
+            image_path (str): Chemin de l'image
             
-            # Iterate over the EXIF tags and values
-            for tag_id, value in exif_data.items():
-                # Get the tag name from the TAGS dictionary
+        Returns:
+            dict: Dictionnaire des données EXIF
+        """
+        exif_data = {}
+        try:
+            image = Image.open(image_path)
+            exifdata = image.getexif()
+            
+            for tag_id, value in exifdata.items():
                 tag_name = TAGS.get(tag_id, tag_id)
                 try:
-                    # Limit the value to 100 characters
-                    exif_data[tag_name] = str(value)[:100]
-                except Exception as e:
-                    # Handle any exceptions that occur during value conversion
+                    exif_data[tag_name] = str(value)[:100]  # Limiter la longueur
+                except:
                     pass
         except Exception as e:
-            # Handle any exceptions that occur during EXIF extraction
             print(f"⚠️  Impossible d'extraire EXIF de {image_path}: {e}")
         
         return exif_data
     
-    def extract_image_info(self, image_path: str) -> dict:
+    def extract_image_info(self, image_path):
         """
-        Extract general information about an image.
-
+        Extrait les informations générales d'une image.
+        
         Args:
-            image_path (str): Path to the image.
-
+            image_path (str): Chemin de l'image
+            
         Returns:
-            dict: A dictionary with image information.
+            dict: Dictionnaire avec les informations
         """
-        # Initialize a dictionary to store image information
         info = {
             'filename': os.path.basename(image_path),
             'filepath': image_path,
@@ -74,55 +55,44 @@ class MetadataExtractor:
         }
         
         try:
-            # Open the image using PIL
             image = Image.open(image_path)
-            # Get the image dimensions and format
             info['width'] = image.width
             info['height'] = image.height
             info['format'] = image.format
             info['mode'] = image.mode
         except Exception as e:
-            # Handle any exceptions that occur during image processing
             print(f"❌ Erreur lors de la lecture de {image_path}: {e}")
         
         return info
     
-    def save_metadata(self, image_folder: str = IMAGE_DIR) -> None:
+    def save_metadata(self, image_folder=IMAGE_DIR):
         """
-        Extract and save metadata from all images in a folder.
-
+        Extrait et sauvegarde les métadonnées de toutes les images.
+        
         Args:
-            image_folder (str): Path to the folder containing images.
+            image_folder (str): Dossier contenant les images
         """
-        # Initialize an empty list to store metadata
         metadata_list = []
         
-        # Iterate over the files in the image folder
         for filename in os.listdir(image_folder):
-            # Check if the file is an image
             if filename.lower().endswith(('.jpg', '.jpeg', '.png', '.gif', '.webp')):
-                # Get the full path to the image
                 image_path = os.path.join(image_folder, filename)
                 
-                # Extract image information and EXIF data
                 info = self.extract_image_info(image_path)
                 exif = self.extract_exif_data(image_path)
                 info.update(exif)
                 
-                # Add the metadata to the list
                 metadata_list.append(info)
                 print(f"  ✓ Métadonnées extraites: {filename}")
         
-        # Save the metadata to a CSV file
+        # Sauvegarde en CSV
         if metadata_list:
             try:
-                # Get the unique keys from the metadata list
                 keys = set()
                 for item in metadata_list:
                     keys.update(item.keys())
                 keys = sorted(list(keys))
                 
-                # Write the metadata to the CSV file
                 with open(METADATA_PATH, 'w', newline='', encoding='utf-8') as f:
                     writer = csv.DictWriter(f, fieldnames=keys)
                     writer.writeheader()
@@ -130,21 +100,18 @@ class MetadataExtractor:
                 
                 print(f"✅ Métadonnées sauvegardées: {METADATA_PATH}")
             except Exception as e:
-                # Handle any exceptions that occur during CSV writing
                 print(f"❌ Erreur lors de la sauvegarde: {e}")
         else:
-            # Handle the case where no images are found
             print("⚠️  Aucune image trouvée pour extraire les métadonnées")
 
 
 # Instance globale
 metadata_extractor = MetadataExtractor()
 
-def save_metadata() -> None:
+def save_metadata():
     """Fonction de compatibilité."""
     metadata_extractor.save_metadata()
 
-def extract_metadata(image_path: str) -> dict:
+def extract_metadata(image_path):
     """Extrait les métadonnées d'une seule image."""
     return metadata_extractor.extract_image_info(image_path)
-```
