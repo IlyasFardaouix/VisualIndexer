@@ -13,7 +13,7 @@
 * [Project Structure](#project-structure)
 * [Installation & Configuration](#installation--configuration)
 * [Pipeline 5 Étapes](#pipeline-5-étapes)
-* [Usage Cases](#usage-cases)
+* [Cas d'Usage](#cas-dusage)
 * [Usage](#usage)
 * [Additional Documentation](#additional-documentation)
 * [Optimizations & Performance](#optimizations--performance)
@@ -25,7 +25,17 @@
 ### Project Description
 --------------------
 
-**VisualIndexer** is a comprehensive and intelligent system for image management, automatic indexing, and semantic search. Powered by **Artificial Intelligence** and state-of-the-art **Deep Learning** models (PyTorch, CLIP, Transformers), it enables batch ingest and optimization of images, automatic extraction of EXIF metadata, recognition of text in images (OCR), and more.
+**VisualIndexer** is a complete and intelligent system for image management, automatic indexing, and semantic search. Powered by **Artificial Intelligence** and state-of-the-art **Deep Learning** models (PyTorch, CLIP, Transformers).
+
+This project enables:
+
+* Batch ingest and optimize images
+* Automatically extract EXIF metadata
+* Recognize text in images (OCR)
+* Automatically generate intelligent visual tags
+* Create semantic vector representations
+* Search images by similarity
+* Explore results via an interactive web interface
 
 ### Key Features
 --------------
@@ -115,7 +125,7 @@
 ### Web & UI
 ------------
 
-| Technology | Version | Usage |
+| Technologie | Version | Usage |
 |-------------|---------|-------|
 | **Streamlit** | 1.29.0 | Interface web interactive |
 
@@ -132,7 +142,7 @@
 ### Project Structure
 ---------------------
 
-```markdown
+```
 VisualIndexer/
 ├── main.py                 # Main entry point
 ├── requirements.txt        # Python dependencies
@@ -172,38 +182,38 @@ VisualIndexer/
 ### Installation & Configuration
 -------------------------------
 
-### Prerequisites
-- Python 3.10 or higher
+### Prérequis
+- Python 3.10 ou supérieur
 - Git
-- 2GB of disk space (for models)
+- 2GB d'espace disque (pour les modèles)
 
-### Quick Installation
+### Installation Rapide
 
 ```bash
-# 1. Clone the repo
+# 1. Cloner le repo
 git clone https://github.com/IlyasFardaouix/VisualIndexer.git
 cd VisualIndexer
 
-# 2. Create a virtual environment
+# 2. Créer environnement virtuel
 python -m venv venv
 source venv/Scripts/activate  # Windows: venv\Scripts\activate
 
-# 3. Install dependencies
+# 3. Installer dépendances
 pip install -r requirements.txt
 
-# 4. Install Tesseract (Windows)
-# Download: https://github.com/tesseract-ocr/tesseract
-# Install and configure path in .env
+# 4. Installer Tesseract (Windows)
+# Télécharger: https://github.com/tesseract-ocr/tesseract
+# Installer et configurer path dans .env
 
-# 5. Place images
-# Put images in: data/images/raw/
+# 5. Placer images
+# Mettre images dans: data/images/raw/
 
-# 6. Run the pipeline
+# 6. Lancer le pipeline
 python main.py --mode pipeline
 
-# 7. Run the web interface
+# 7. Lancer l'interface web
 python main.py --mode ui
-# Access: http://localhost:8501
+# Accès: http://localhost:8501
 ```
 
 ### Pipeline 5 Étapes
@@ -225,15 +235,15 @@ Images Brutes
 Résultats Indexés & Recherchables
 ```
 
-### Usage Cases
+### Cas d'Usage
 --------------
 
-✅ **Intelligent Archiving** - Professional image management  
-✅ **Semantic Search** - Find images by visual similarity  
-✅ **Automatic Indexing** - Tags and metadata without intervention  
-✅ **Duplicate Detection** - Eliminate detected duplicates  
-✅ **Document Scanning** - Extract text from scanned documents  
-✅ **E-Commerce** - Catalog products with images  
+✅ **Archivage Intelligent** - Gestion massive d'images professionnelles  
+✅ **Recherche Sémantique** - Trouver images par similarité visuelle  
+✅ **Indexation Automatique** - Tags et métadonnées sans intervention  
+✅ **Dédoublonnage** - Eliminer doublons détectés  
+✅ **Documentation** - Extraire texte depuis documents scannés  
+✅ **E-Commerce** - Cataloguer produits en images  
 
 ### Usage
 -----
@@ -292,9 +302,4 @@ MIT License - Free to use
 --------
 
 **Ilyas Fardaouix**  
-GitHub: [@IlyasFardaouix](https://github.com/IlyasFardaouix)
-
-### Support & Contributions
----------------------------
-
-Feel free to open issues or pull requests on GitHub.
+GitHub: [@Ily
