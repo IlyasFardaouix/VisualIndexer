@@ -1,300 +1,144 @@
-# 🖼️ VisualIndexer
-================
+﻿# VisualIndexer
 
-**AI-Powered Image Management & Semantic Search with PyTorch, CLIP, Transformers & Streamlit**
-=====================================================================================
+**Production-grade multimodal search engine combining CLIP embeddings, OCR extraction, and vector similarity search**
 
-### Table of Contents
------------------
+![Python](https://img.shields.io/badge/Python-3.8%2B-3776AB?style=for-the-badge&logo=python&logoColor=white)
+![License](https://img.shields.io/badge/License-MIT-22C55E?style=for-the-badge)
+![Status](https://img.shields.io/badge/Status-Active-0EA5E9?style=for-the-badge)
 
-* [Project Description](#project-description)
-* [Key Features](#key-features)
-* [Technologies Used](#technologies-used)
-* [Project Structure](#project-structure)
-* [Installation & Configuration](#installation--configuration)
-* [Pipeline 5 Étapes](#pipeline-5-étapes)
-* [Usage Cases](#usage-cases)
-* [Usage](#usage)
-* [Additional Documentation](#additional-documentation)
-* [Optimizations & Performance](#optimizations--performance)
-* [Security Configuration](#security-configuration)
-* [License](#license)
-* [Author](#author)
-* [Support & Contributions](#support--contributions)
+## Demo
 
-### Project Description
---------------------
+<!-- Add demo GIF here -->
 
-**VisualIndexer** is a comprehensive and intelligent system for image management, automatic indexing, and semantic search. Powered by **Artificial Intelligence** and state-of-the-art **Deep Learning** models (PyTorch, CLIP, Transformers), it enables batch ingest and optimization of images, automatic extraction of EXIF metadata, recognition of text in images (OCR), and more.
+The demo showcases end-to-end multimodal retrieval: indexing a folder of images, encoding them with CLIP, extracting text via OCR, and returning top-k results for both text and image queries. It highlights similarity ranking scores and OCR overlays to explain why each match is relevant. The UI demonstrates fast retrieval behavior on medium-to-large image collections and gives a practical view of production usage.
 
-### Key Features
---------------
+## Problem Statement
 
-#### Image Ingestion
+Traditional keyword search performs poorly for visual content because many images either have little metadata or noisy filenames that do not represent semantic meaning. This creates a retrieval gap where users know what they are looking for conceptually but cannot retrieve it through exact token matches.
 
-* Batch upload and ingest image files
-* Automatic duplicate detection (MD5 hash)
-* Intelligent optimization and resizing (max 1920x1080)
-* Adaptive JPEG compression (quality 85%)
+By combining CLIP embeddings with OCR extraction, VisualIndexer solves both semantic and textual discovery paths. CLIP captures visual-language similarity across modalities, while OCR extracts explicit text signals from images; together they produce stronger ranking quality, better recall, and more explainable search results.
 
-#### Metadata Extraction
+## Architecture
 
-* Complete EXIF extraction (capture date, camera, GPS, etc.)
-* Image dimensions and format
-* Automatic CSV generation for analysis
+```mermaid
+flowchart LR
+    A[User Input<br/>(image or text query)]
+    B[CLIP Encoder<br/>(512-dim vector)]
+    C[Vector Store<br/>(ChromaDB / FAISS)]
+    D[Similarity Search<br/>(cosine similarity)]
+    E[Ranked Results<br/>(score-ordered)]
+    F[OCR Text Overlay<br/>on result images]
 
-#### Text Recognition (OCR)
-
-* Multi-language Tesseract OCR (English + French)
-* Extract text present in images
-* JSON caching for optimization
-
-#### Automatic Tagging
-
-* Vision Transformer CLIP (OpenAI)
-* Intelligent visual tag generation
-* 50+ predefined categories (city, portrait, food, document, etc.)
-
-#### Semantic Embeddings
-
-* 384D vector generation with Sentence-Transformers
-* Semantic content representation
-* Advanced similarity search
-
-#### Advanced Search Engine
-
-* Text search with embeddings
-* Metadata filtering (date, size, format)
-* Combined tag search
-* Intelligent result fusion
-
-#### Interactive Web Interface
-
-* Modern Streamlit dashboard
-* Image visualization
-* Multi-criteria search
-* Result export
-
-### Technologies Used
--------------------
-
-**VisualIndexer** uses a modern and performant technology stack:
-
-* **Python** 3.10+ - Primary language
-* **Pip** - Package manager
-
-### Deep Learning & Vision
--------------------------
-
-| Technology | Version | Usage |
-|-------------|---------|-------|
-| **PyTorch** | 2.1.1 | Framework deep learning |
-| **TorchVision** | 0.16.1 | Vision utilities |
-| **Transformers** | 4.35.2 | HuggingFace models |
-| **Sentence-Transformers** | 2.2.2 | Embeddings sémantiques |
-| **CLIP** | 0.1.0.post1 | Vision-Language model |
-
-### Image Processing
--------------------
-
-| Technology | Version | Usage |
-|-------------|---------|-------|
-| **Pillow** | 10.1.0 | Image manipulation |
-| **OpenCV** | 4.8.1 | Vision algorithms |
-| **Pytesseract** | 0.3.10 | OCR wrapper |
-
-### Data Science & Analytics
----------------------------
-
-| Technology | Version | Usage |
-|-------------|---------|-------|
-| **NumPy** | 1.26.2 | Numerical computing |
-| **Pandas** | 2.1.3 | Dataframes & data processing |
-| **Scikit-learn** | 1.3.2 | ML utilities |
-
-### Web & UI
-------------
-
-| Technology | Version | Usage |
-|-------------|---------|-------|
-| **Streamlit** | 1.29.0 | Interface web interactive |
-
-### Database & Utils
--------------------
-
-| Technology | Version | Usage |
-|-------------|---------|-------|
-| **PostgreSQL** | - | (Optional) Database |
-| **Python-dotenv** | 1.0.0 | Environment variables |
-| **TQDM** | 4.66.1 | Progress bars |
-| **Requests** | 2.31.0 | HTTP client |
-
-### Project Structure
----------------------
-
-```markdown
-VisualIndexer/
-├── main.py                 # Main entry point
-├── requirements.txt        # Python dependencies
-├── .env                    # Configuration (Tesseract path)
-├── .gitignore              # Git exclusions
-│
-├── config/
-│   └── settings.py         # Centralized configuration
-│
-├── scripts/                # Business logic modules
-│   ├── ingest.py           # Ingestion & duplicates
-│   ├── extract_metadata.py # EXIF extraction
-│   ├── ocr.py              # Tesseract OCR
-│   ├── tag_clip.py         # CLIP tagging
-│   ├── embeddings.py       # Semantic vectors
-│   └── search.py           # Search engine
-│
-├── ui/
-│   └── interface.py        # Streamlit interface
-│
-├── data/
-│   ├── images/
-│   │   ├── raw/            # Input images
-│   │   └── processed/      # Optimized images
-│   ├── metadata.csv        # Metadata
-│   ├── embeddings.json     # Embeddings cache
-│   └── ocr_results.json    # OCR cache
-│
-├── models/
-│   └── cache/              # ML models cache
-│
-├── README.md               # Documentation
-├── GUIDE_UTILISATION.md    # Usage guide
-└── COMMITS_GUIDE.md        # Commits guide
+    A --> B
+    B --> C
+    C --> D
+    D --> E
+    E --> F
 ```
 
-### Installation & Configuration
--------------------------------
+## Features
 
-### Prerequisites
-- Python 3.10 or higher
-- Git
-- 2GB of disk space (for models)
+- Multimodal input support for both text queries and image queries
+- CLIP-based embedding pipeline for robust semantic retrieval
+- OCR extraction with Tesseract to enrich visual indexing with text signals
+- Vector similarity search with cosine scoring for fast nearest-neighbor retrieval
+- Streamlit interface for interactive exploration and result inspection
+- Fast batch indexing workflow for practical production datasets
+- Scales to large image collections with vector-store-backed retrieval
+- Extensible modular pipeline for custom encoders, rerankers, and stores
 
-### Quick Installation
+## Tech Stack
+
+| Component | Technology | Purpose |
+|---|---|---|
+| Vision-Language Encoder | CLIP | Encode images/text into a shared embedding space |
+| OCR Engine | Tesseract OCR | Extract textual cues from image regions |
+| Vector Database | ChromaDB | Store and query embeddings with metadata |
+| Similarity Engine | FAISS | Efficient nearest-neighbor search at scale |
+| Application Layer | Python | Core orchestration and indexing/search logic |
+| Model Hub | HuggingFace | Access model weights and tokenizer utilities |
+| Numeric Processing | NumPy | Vector ops and similarity preprocessing |
+| Image Handling | Pillow | Image loading and preprocessing utilities |
+| Frontend | Streamlit | Interactive search UI and diagnostics |
+
+## Installation
 
 ```bash
-# 1. Clone the repo
 git clone https://github.com/IlyasFardaouix/VisualIndexer.git
 cd VisualIndexer
-
-# 2. Create a virtual environment
-python -m venv venv
-source venv/Scripts/activate  # Windows: venv\Scripts\activate
-
-# 3. Install dependencies
 pip install -r requirements.txt
-
-# 4. Install Tesseract (Windows)
-# Download: https://github.com/tesseract-ocr/tesseract
-# Install and configure path in .env
-
-# 5. Place images
-# Put images in: data/images/raw/
-
-# 6. Run the pipeline
-python main.py --mode pipeline
-
-# 7. Run the web interface
-python main.py --mode ui
-# Access: http://localhost:8501
 ```
 
-### Pipeline 5 Étapes
----------------------
+Sample `requirements.txt`:
 
-```
-Images Brutes
-    ↓
-[1] INGESTION → Détection doublons, optimisation
-    ↓
-[2] MÉTADONNÉES → Extraction EXIF, CSV
-    ↓
-[3] OCR → Reconnaissance texte
-    ↓
-[4] TAGGING → CLIP vision, tags
-    ↓
-[5] EMBEDDINGS → Vecteurs sémantiques, recherche
-    ↓
-Résultats Indexés & Recherchables
+```txt
+numpy>=1.24.0
+pandas>=2.0.0
+torch>=2.0.0
+transformers>=4.35.0
+sentence-transformers>=2.2.2
+opencv-python>=4.8.0
+pillow>=10.0.0
+pytesseract>=0.3.10
+chromadb>=0.5.0
+faiss-cpu>=1.7.4
+streamlit>=1.30.0
+scikit-learn>=1.3.0
 ```
 
-### Usage Cases
---------------
+## Usage
 
-✅ **Intelligent Archiving** - Professional image management  
-✅ **Semantic Search** - Find images by visual similarity  
-✅ **Automatic Indexing** - Tags and metadata without intervention  
-✅ **Duplicate Detection** - Eliminate detected duplicates  
-✅ **Document Scanning** - Extract text from scanned documents  
-✅ **E-Commerce** - Catalog products with images  
+### Example 1 - Indexing images
 
-### Usage
------
+```python
+from visual_indexer import VisualIndexer
 
-### Full Pipeline Mode
+indexer = VisualIndexer()
+indexer.index_directory("./images")
+```
+
+### Example 2 - Querying
+
+```python
+results = indexer.search("a red car on a highway", top_k=5)
+for r in results:
+    print(r.image_path, r.score, r.ocr_text)
+```
+
+## Running the Streamlit UI
+
 ```bash
-python main.py --mode pipeline
-```
-Processes all images in the `data/images/raw/` folder
-
-### Web Interface Mode
-```bash
-python main.py --mode ui
-```
-Launches the Streamlit dashboard on http://localhost:8501
-
-### Ingestion Only Mode
-```bash
-python main.py --mode ingest
-```
-Ingests images only without AI modules
-
-### Additional Documentation
----------------------------
-
-* [GUIDE_UTILISATION.md](GUIDE_UTILISATION.md) - Complete usage guide
-* [COMMITS_GUIDE.md](COMMITS_GUIDE.md) - GitHub commits documentation
-* [requirements.txt](requirements.txt) - Complete dependencies list
-
-### Optimizations & Performance
-------------------------------
-
-* ✅ Intelligent ML model caching
-* ✅ Reused embedding vectors
-* ✅ Optimized JPEG compression
-* ✅ Batch processing
-* ✅ Progress tracking with TQDM
-
-### Security Configuration
--------------------------
-
-Sensitive variables are stored in `.env`:
-```bash
-TESSERACT_PATH=C:\Program Files\Tesseract-OCR\tesseract.exe
-OCR_LANGUAGE=eng+fra
-DB_HOST=localhost
-DB_PORT=5432
+streamlit run app.py
 ```
 
-### License
---------
+## Example Results
 
-MIT License - Free to use
+| Query | Top Match | Score | OCR Text Found |
+|---|---|---:|---|
+| `a red car on a highway` | `images/highway_red_sedan.jpg` | 0.912 | `A7 Toll - Casablanca` |
+| `invoice with VAT number` | `images/docs/invoice_2024_11.png` | 0.884 | `VAT: MA-2049-8891` |
+| `conference slide about transformers` | `images/slides/llm_architecture.png` | 0.861 | `Attention Is All You Need` |
 
-### Author
---------
+## Roadmap
 
-**Ilyas Fardaouix**  
-GitHub: [@IlyasFardaouix](https://github.com/IlyasFardaouix)
+- [x] CLIP-based image indexing
+- [x] OCR text extraction
+- [x] Streamlit search UI
+- [ ] Support for video keyframe indexing
+- [ ] REST API with FastAPI
 
-### Support & Contributions
----------------------------
+## Contributing
 
-Feel free to open issues or pull requests on GitHub.
+Contributions are welcome and strongly encouraged.
+Please open an issue describing your proposal before large changes so architecture decisions stay consistent.
+If you are adding a new retriever, encoder, or vector backend, include tests and a reproducible benchmark snippet.
+
+## License
+
+MIT
+
+## Author
+
+Built by **Ilyas Fardaoui** - AI Engineering Intern at MAPMDREF
+GitHub: https://github.com/IlyasFardaouix
+LinkedIn: https://linkedin.com/in/ilyas-fardaoui-44081224a
